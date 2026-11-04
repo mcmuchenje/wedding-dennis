@@ -1,0 +1,38 @@
+{
+  "couple": {
+    "partner1": "Tinotenda",
+    "partner2": "Dennis"
+  },
+  "tagline": "Together with their families, Tinotenda and Dennis invite you to celebrate their marriage",
+  "weddingDate": "2026-12-20T09:30:00+02:00",
+  "story": "Some love stories are loud; ours grew quietly, one conversation at a time, until it became the steadiest thing in both our lives. On the 20th of December we make it official, and we would be honoured to have you there with us.",
+  "schedule": [
+    {
+      "time": "9:30 AM",
+      "title": "Ceremony",
+      "note": "Please be seated by 9:15 so we can begin on time."
+    },
+    {
+      "time": "11:00 AM",
+      "title": "Photographs",
+      "note": "Family and couple portraits in the gardens."
+    },
+    {
+      "time": "12:30 PM",
+      "title": "Reception lunch",
+      "note": "Speeches, toasts and a shared meal."
+    },
+    {
+      "time": "2:30 PM",
+      "title": "Celebrations",
+      "note": "Music and dancing into the afternoon."
+    }
+  ],
+  "venue": {
+    "name": "Grey Rock",
+    "address": "Hatfield, Harare, Zimbabwe",
+    "mapQuery": "Grey Rock Events Venue, Hatfield, Harare, Zimbabwe"
+  },
+  "rsvpDeadline": "2026-12-01",
+  "adminPassword": "changeme"
+}

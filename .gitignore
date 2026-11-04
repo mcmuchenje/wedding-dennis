@@ -1,0 +1,15 @@
+# Dependencies
+node_modules/
+
+# Runtime data — guest RSVPs and uploaded photos (back these up separately)
+data/
+public/uploads/
+
+# Environment
+.env
+.env.*
+
+# OS / editor noise
+Thumbs.db
+.DS_Store
+*.log

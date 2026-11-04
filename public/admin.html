@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — Tinotenda &amp; Dennis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    body { background: var(--ivory); min-height: 100vh; }
+
+    .admin-shell {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: clamp(2rem, 6vw, 4rem) clamp(1.2rem, 4vw, 2rem);
+    }
+
+    .admin-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.2rem;
+    }
+
+    .admin-head h1 {
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: 2.1rem;
+      color: var(--ink);
+    }
+
+    .admin-head a, .link-btn {
+      font-family: var(--body);
+      font-size: 0.78rem;
+      font-weight: 600;
+      
+      
+      color: var(--champagne-deep);
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      padding: 0;
+    }
+
+    .panel {
+      background: var(--ivory-bright);
+      border: 1px solid rgba(205, 182, 142, 0.35);
+      border-radius: 18px;
+      padding: clamp(1.4rem, 4vw, 2.2rem);
+      margin-bottom: 1.8rem;
+    }
+
+    .panel h2 {
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: 1.45rem;
+      color: var(--ink);
+      margin-bottom: 1.1rem;
+    }
+
+    /* login */
+    .login-card { max-width: 420px; margin: 14vh auto 0; text-align: center; }
+    .login-card .field { text-align: left; }
+    .login-card .field label { color: var(--champagne-deep); }
+    .login-card input[type="password"] {
+      width: 100%;
+      font-family: var(--body);
+      font-size: 1rem;
+      padding: 0.85rem 1rem;
+      border: 1px solid rgba(205, 182, 142, 0.5);
+      border-radius: 10px;
+      background: var(--ivory);
+      color: var(--ink);
+    }
+    .login-card input[type="password"]:focus { outline: none; border-color: var(--champagne-deep); }
+    .login-error { color: #c25b64; font-size: 0.9rem; min-height: 1.3em; margin-top: 0.8rem; }
+
+    /* uploader */
+    .drop-zone {
+      border: 2px dashed rgba(205, 182, 142, 0.6);
+      border-radius: 14px;
+      padding: 2.4rem 1.4rem;
+      text-align: center;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+    .drop-zone.dragover { background: rgba(205, 182, 142, 0.1); border-color: var(--champagne-deep); }
+    .drop-zone strong { color: var(--champagne-deep); font-weight: 600; }
+    .upload-status { margin-top: 0.9rem; font-size: 0.9rem; color: var(--ink-soft); min-height: 1.3em; }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 0.9rem;
+      margin-top: 1.4rem;
+    }
+    .photo-tile { position: relative; border-radius: 10px; overflow: hidden; aspect-ratio: 1; background: var(--ivory-deep); }
+    .photo-tile img { width: 100%; height: 100%; object-fit: cover; }
+    .photo-tile button {
+      position: absolute;
+      top: 6px; right: 6px;
+      width: 28px; height: 28px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(60, 74, 56, 0.8);
+      color: #fff;
+      font-size: 0.95rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+    .photo-tile button:hover { background: #c25b64; }
+    .empty-note { color: var(--ink-soft); font-style: italic; }
+
+    /* rsvp table */
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+    th, td { text-align: left; padding: 0.65rem 0.8rem; border-bottom: 1px solid rgba(205, 182, 142, 0.25); vertical-align: top; }
+    th {
+      font-size: 0.7rem;
+      font-weight: 600;
+      
+      
+      color: var(--champagne-deep);
+    }
+    .pill { display: inline-block; padding: 0.15rem 0.7rem; border-radius: 999px; font-size: 0.78rem; font-weight: 600; }
+    .pill-yes { background: rgba(169, 189, 164, 0.35); color: #3f5c43; }
+    .pill-no { background: rgba(224, 152, 158, 0.3); color: #a25560; }
+    .rsvp-summary { display: flex; gap: 2rem; flex-wrap: wrap; margin-bottom: 1.2rem; }
+    .rsvp-summary div span { font-family: var(--display); font-size: 1.9rem; font-weight: 500; color: var(--ink); display: block; line-height: 1.1; }
+    .rsvp-summary div small { font-size: 0.7rem; letter-spacing: 0.2em;  color: var(--ink-soft); }
+  </style>
+</head>
+<body>
+
+  <!-- Login view -->
+  <div class="admin-shell" id="login-view" hidden>
+    <div class="panel login-card">
+      <h2>Wedding admin</h2>
+      <p style="color: var(--ink-soft); margin-bottom: 1.4rem;">Sign in to manage photos and view RSVPs.</p>
+      <form id="login-form">
+        <div class="field">
+          <label for="password">Password</label>
+          <input type="password" id="password" autocomplete="current-password" required>
+        </div>
+        <button type="submit" class="btn btn-solid btn-wide">Sign in</button>
+        <p class="login-error" id="login-error"></p>
+      </form>
+      <a href="/" class="link-btn">← Back to invitation</a>
+    </div>
+  </div>
+
+  <!-- Admin view -->
+  <div class="admin-shell" id="admin-view" hidden>
+    <div class="admin-head">
+      <h1>Tinotenda &amp; Dennis: admin</h1>
+      <div style="display:flex; gap:1.6rem;">
+        <a href="/">View site</a>
+        <button class="link-btn" id="logout-btn">Sign out</button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Upload photos</h2>
+      <div class="drop-zone" id="drop-zone" role="button" tabindex="0" aria-label="Upload photos">
+        <p><strong>Click to choose photos</strong> or drag &amp; drop them here</p>
+        <p style="font-size:0.82rem; margin-top:0.4rem;">JPG, PNG, WebP, GIF or AVIF · up to 15 MB each</p>
+        <input type="file" id="file-input" accept="image/*" multiple hidden>
+      </div>
+      <p class="upload-status" id="upload-status"></p>
+      <div class="photo-grid" id="photo-grid"></div>
+      <p class="empty-note" id="photos-empty" hidden>No photos yet — the ones you upload appear in the gallery on the invitation.</p>
+    </div>
+
+    <div class="panel">
+      <h2>RSVPs</h2>
+      <div class="rsvp-summary">
+        <div><span id="sum-yes">0</span><small>Attending</small></div>
+        <div><span id="sum-guests">0</span><small>Total guests</small></div>
+        <div><span id="sum-no">0</span><small>Declined</small></div>
+      </div>
+      <div class="table-wrap">
+        <table id="rsvp-table">
+          <thead>
+            <tr><th>Name</th><th>Phone</th><th>Email</th><th>Attending</th><th>Guests</th><th>Message</th><th>Received</th></tr>
+          </thead>
+          <tbody id="rsvp-body"></tbody>
+        </table>
+      </div>
+      <p class="empty-note" id="rsvps-empty" hidden>No RSVPs yet.</p>
+    </div>
+  </div>
+
+  <script src="/js/admin.js"></script>
+</body>
+</html>

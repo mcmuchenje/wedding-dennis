@@ -1,0 +1,15 @@
+{
+  "name": "wedding-tinotenda-dennis",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Wedding invitation website with gallery, RSVP, and venue map",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "multer": "^2.2.0"
+  }
+}
