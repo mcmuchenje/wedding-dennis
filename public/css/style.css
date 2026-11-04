@@ -1,22 +1,26 @@
 /* ============================================================
    Tinotenda & Dennis — 20 December 2026, Grey Rock
-   Palette: sage green / champagne / ivory
+   Palette: soft sage / champagne / ivory, with gold accents
    Type: Marcellus (inscriptional display) + Jost (body)
    Signature: the pebble — every photo sits in a smooth,
    river-worn stone shape, after the venue's name.
    ============================================================ */
 
 :root {
-  --ivory: #f7f3e9;
-  --ivory-deep: #ece5d3;
-  --ivory-bright: #fcfaf4;
-  --sage: #9dae8c;
-  --sage-mist: #dfe5d4;
-  --ink: #3c4a38;          /* deep sage, used as "black" */
-  --ink-soft: #5b6a55;
-  --champagne: #cdb68e;
-  --champagne-light: #e9ddc4;
-  --champagne-deep: #8d7448; /* champagne darkened for legible text */
+  /* sampled from the couple's "Soft Sage & Champagne" mood board (soft.jpeg) */
+  --ivory: #f4efe6;          /* board ivory #f1e9de, lifted for the page */
+  --ivory-deep: #e9e0d2;     /* raw linen napkins */
+  --ivory-bright: #faf7f1;
+  --sage: #949c84;           /* board sage */
+  --sage-soft: #c1c5b4;      /* board soft sage */
+  --sage-mist: #dcdfd2;      /* soft sage washed toward ivory */
+  --sage-deep: #59614b;      /* darkest ribbon tone, deepened for ivory text */
+  --ink: #474e3d;            /* olive-sage, used as "black" */
+  --ink-soft: #5c6350;
+  --champagne: #d8c9b6;      /* board champagne */
+  --champagne-light: #e7dccb;
+  --champagne-deep: #7d6a4a; /* champagne darkened for legible text */
+  --gold: #b9a27a;           /* gold cutlery and candle holders: hairlines only */
 
   --display: "Marcellus", "Times New Roman", serif;
   --body: "Jost", "Segoe UI", system-ui, sans-serif;
@@ -129,7 +133,7 @@ h3 {
 }
 
 .nav.scrolled {
-  background: rgba(247, 243, 233, 0.94);
+  background: rgba(244, 239, 230, 0.94);
   backdrop-filter: blur(8px);
   box-shadow: 0 1px 0 var(--ivory-deep);
 }
@@ -210,7 +214,7 @@ h3 {
   flex-wrap: wrap;
   gap: 1.25rem 2.75rem;
   padding-top: 1.5rem;
-  border-top: 1px solid var(--champagne);
+  border-top: 1px solid var(--gold);
   margin-bottom: 2.25rem;
   max-width: 34rem;
 }
@@ -239,7 +243,7 @@ h3 {
 .pebble-ring {
   position: absolute;
   inset: -4% -6% 6% 8%;
-  border: 1px solid var(--champagne);
+  border: 1px solid var(--gold);
   border-radius: var(--pebble-4);
   z-index: 0;
 }
@@ -356,7 +360,7 @@ h3 {
   margin: 0;
 }
 .lightbox[open] { display: grid; place-items: center; }
-.lightbox::backdrop { background: rgba(38, 47, 35, 0.92); }
+.lightbox::backdrop { background: rgba(52, 57, 44, 0.94); }
 .lightbox img {
   max-width: min(92vw, 1000px);
   max-height: 86vh;
@@ -396,7 +400,7 @@ h3 {
   left: 7.25rem;
   top: 0.9rem;
   bottom: 0.9rem;
-  border-left: 1px solid var(--champagne);
+  border-left: 1px solid var(--gold);
 }
 .timeline-item {
   display: grid;
@@ -435,20 +439,43 @@ h3 {
 .notice strong { display: block; font-weight: 500; }
 
 .dress-code p { color: var(--ink-soft); margin-bottom: 1.25rem; }
-.swatches { list-style: none; display: flex; flex-wrap: wrap; gap: 1.5rem 2rem; }
-.swatches li { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; font-size: 0.95rem; }
+.swatches { list-style: none; display: flex; flex-wrap: wrap; gap: 1.25rem 1.4rem; }
+.swatches li { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; font-size: 0.9rem; text-align: center; }
+
+.board-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.75rem;
+  padding: 0.5rem 1.25rem 0.5rem 0.5rem;
+  background: var(--ivory-bright);
+  border: 1px solid var(--ivory-deep);
+  border-radius: 18px 6px 18px 6px;
+  text-decoration: none;
+  transition: border-color 0.2s ease;
+}
+.board-link:hover { border-color: var(--gold); }
+.board-link img {
+  width: 3.5rem;
+  height: 5.25rem;
+  object-fit: cover;
+  border-radius: 12px 4px 12px 4px;
+}
+.board-link span { text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: 4px; }
 .swatch {
-  width: 4.25rem;
-  height: 3.6rem;
+  width: 3.6rem;
+  height: 3.1rem;
   border-radius: var(--pebble-1);
-  border: 1px solid rgba(60, 74, 56, 0.15);
+  border: 1px solid rgba(71, 78, 61, 0.18);
 }
 .swatch-sage { background: var(--sage); }
-.swatch-champagne {
-  background: linear-gradient(135deg, #e9ddc4 0%, #cdb68e 55%, #b89c6c 100%);
-  border-radius: var(--pebble-2);
+.swatch-soft-sage { background: var(--sage-soft); border-radius: var(--pebble-4); }
+.swatch-champagne { background: var(--champagne); border-radius: var(--pebble-2); }
+.swatch-ivory { background: #f1e9de; border-radius: var(--pebble-3); }
+.swatch-gold {
+  background: linear-gradient(135deg, #efe3c8 0%, #c9ad7c 45%, #a88a58 70%, #e2cfa6 100%);
+  border-radius: var(--pebble-4);
 }
-.swatch-ivory { background: #fbf7ec; border-radius: var(--pebble-3); }
 
 /* ---------- venue ---------- */
 
@@ -472,7 +499,7 @@ h3 {
 
 .rsvp {
   max-width: none;
-  background: var(--ink);
+  background: var(--sage-deep);
   color: var(--ivory);
 }
 .rsvp-inner {
@@ -487,7 +514,7 @@ h3 {
 .rsvp-intro strong { color: var(--ivory); }
 .rsvp-rules {
   padding-left: 1rem;
-  border-left: 1px solid var(--champagne);
+  border-left: 1px solid var(--gold);
 }
 
 .field { border: 0; margin-bottom: 1.5rem; min-width: 0; }
